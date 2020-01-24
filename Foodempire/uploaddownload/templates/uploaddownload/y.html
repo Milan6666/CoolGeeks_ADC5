@@ -1,0 +1,42 @@
+{% block content %}
+
+<form class = "search-bar" method = "get">
+<input type ="text" name ="q" placeholder="Search.." value="{{query}}">
+</form>
+
+
+<table class="table">
+
+<thead>
+	<tr>
+		<th>Title</th>
+		<th>Name</th>
+		<th>Download</th>
+		<th>Delete</th>
+	</tr>
+</thead>
+
+<tbody>
+	{% for food in food  %}
+	<tr>
+		<td>{{food.title}}</td>
+		<td>{{food.name}}</td>
+		<td>{{food.file}}</td>
+		<!-- <td><a href="{{food.pdf.url}}">Download PDF</a></td> -->
+		<td>
+			<a href={{food.food.url}} class="btn btn-primary btn-sm" target="_blank">Download File</a>
+		</td>
+		<td>
+			<form method="POST", action="{% url 'uploaddownload:delete_data' food.pk %}">
+				{% csrf_token %}
+				<button type="submit" class="btn btn-primary btn-sm"> Delete</button>
+			</form>
+		</td>
+	</tr>
+	{% endfor %}
+</tbody>
+</table>
+
+
+{% endblock %}
+
