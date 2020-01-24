@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body>
+    {{ se }}
+    <h1>Food Empire</h1>
+    <form class="" action="/login/" method="post" autocomplete="off">
+    {% csrf_token %}
+    <label>E-mail</label>
+    <input type="email" name="username">
+    <br><br>
+    <label>Password</label>
+    <input type="password" name="password"><br>
+    <input type="submit" value="login">
+  </form>
+  {{ error }}
+  </body>
+</html>
