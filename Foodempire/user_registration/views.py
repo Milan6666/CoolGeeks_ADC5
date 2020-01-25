@@ -4,7 +4,7 @@ from .models import Registration
 
 
 def home(request):
-    return render(request,'user_registration/index.html')
+    return render(request,'user_registration/home.html')
     #validate the form and Registration the user
 def signup(request):
         #checks wether the method is post or not
@@ -38,7 +38,7 @@ def signup(request):
 def login(request):        
     if request.session.has_key('username'): #check the cookies if the user is already signed in
         tag=request.session['username']
-        return render(request,'user_registration/home.html')
+        return render(request,'user_registration/index.html')
     else:
         if request.method == 'POST':
             try:
@@ -61,8 +61,11 @@ def login(request):
             return render(request,'user_registration/login.html')
 
 def logout(request):
+    # {'apple' : model_name}
     try:
         del request.session['username'] #delete the previously saved cookies
     except:
         pass
     return render(request,'user_registration/login.html',{'se':'please login to continue'})
+def profile(request):
+    return render(request, 'user_registration/profile.html')

@@ -1,3 +1,8 @@
+{% extends 'user_registration/index.html' %}
+
+{% block content %}
+
+ 
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
   <head>
@@ -6,16 +11,29 @@
   </head>
   <body>
     {{ se }}
+
+    <style> 
+    body, html {
+    height: 100%;
+    font-family: Poppins-Regular,sans-serif;
+  }
+
+    </style>
+
+
     <h1>Food Empire</h1>
     <form class="" action="/login/" method="post" autocomplete="off">
     {% csrf_token %}
-    <label>E-mail</label>
+    <label>User</label>
     <input type="email" name="username">
-    <br><br>
+    <br>
     <label>Password</label>
     <input type="password" name="password"><br>
     <input type="submit" value="login">
+
+    <!-- {{ apple.name }} -->
   </form>
   {{ error }}
   </body>
 </html>
+ {% endblock %}
