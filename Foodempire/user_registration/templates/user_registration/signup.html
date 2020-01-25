@@ -1,0 +1,46 @@
+{% extends 'user_registration/index.html' %}
+
+{% block content %}
+{{ a }}
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body>
+    
+    <form class="" action="/signup/" method="post" autocomplete="off">
+      {% csrf_token %}
+      <label>First name</label>
+      <input class='loginForm' type="text" name="firstname" required><br>
+      <label>Middle name</label>
+      <input type="text" name="middlename" value=""><br>
+      <label>Last name</label>
+      <input type="text" name="lastname" value="" required><br>
+      <label>E-mail</label>
+      <input type="email" name="email" value="" required><br>
+      <label>phone_number</label>
+      <input type="number" name="phonenumber" value="" required><br>
+      <label>address</label>
+      <input type="text" name="address" value="" required><br>
+      <label>Gender</label>
+      <select class="" name="gender" required>
+        <option value="male">Male</option>
+        <option value="female">Female</option>
+        <option value="notToSay">Hidden</option>
+      </select><br>
+      <label>Date Of Birth</label>
+      <input type="date" name="dateo"><br>
+      <label>password</label>
+      <input type="password" name="password1" value="" required><br>
+      <label>confirm password</label>{{ error }}
+      <input type="password" name="password" required><br>
+      <input type="submit" name="signup" value="signup">
+    </form>
+  </body>
+</html>
+
+ {% endblock %}
+
+
