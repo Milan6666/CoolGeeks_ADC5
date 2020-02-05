@@ -16,7 +16,7 @@
 		<div class="collapse navbar-collapse" id="navbarTogglerDemo03">
 			<ul class="navbar-nav mr-auto mt-2 mt-lg-0">
 				<li class="nav-item active">
-					<a class="nav-link" href="{%url 'user_registration:profile' %}">Profile <span class="sr-only">(current)</span></a>
+					<a class="nav-link" href="{%url 'user_registration:aboutUs' %}">aboutUs <span class="sr-only">(current)</span></a>
 				</li>
 				<li class="nav-item">
 					<a class="nav-link" href="{%url 'user_registration:login' %}">login</a>
@@ -24,13 +24,12 @@
 				<li class="nav-item">
 					<a class="nav-link" href="{%url 'user_registration:signup' %}">sign up</a>
 				</li>
-			</ul>
-			<ul class="navbar-nav ml-auto mt-2 mt-lg-0">
+			
 				<li class="nav-item">
-					<a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+					<a class="nav-link" href="{% url 'uploaddownload:uploadfiles' %}">UploadFood<span class="sr-only">(current)</span></a>
 				</li>
 				<li class="nav-item">
-					<a class="nav-link" href="#">Link</a>
+					<a class="nav-link" href="{% url 'uploaddownload:list_food' %}">Foodlists</a>
 				</li>
 			</ul>
 			<form class="form-inline my-2 my-lg-0">

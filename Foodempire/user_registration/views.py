@@ -67,5 +67,5 @@ def logout(request):
     except:
         pass
     return render(request,'user_registration/login.html',{'se':'please login to continue'})
-def profile(request):
-    return render(request, 'user_registration/profile.html')
+def aboutUs(request):
+    return render(request, 'user_registration/aboutUs.html')

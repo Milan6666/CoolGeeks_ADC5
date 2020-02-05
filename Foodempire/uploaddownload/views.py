@@ -19,7 +19,7 @@ def uploadfiles(request):
 
 
     form = Ourform()
-    return render(request, 'uploaddownload/food.html',
+    return render(request, 'uploaddownload/uploadfiles.html',
             {'form' : form})
 
 def list_food(request):
