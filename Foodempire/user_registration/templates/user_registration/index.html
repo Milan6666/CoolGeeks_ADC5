@@ -15,30 +15,35 @@
 
 		<div class="collapse navbar-collapse" id="navbarTogglerDemo03">
 			<ul class="navbar-nav mr-auto mt-2 mt-lg-0">
-				<li class="nav-item active">
-					<a class="nav-link" href="{%url 'user_registration:aboutUs' %}">About Us <span class="sr-only">(current)</span></a>
-				</li>
-				<li class="nav-item">
-					<a class="nav-link" href="{%url 'user_registration:login' %}">login</a>
-				</li>
-				<li class="nav-item">
-					<a class="nav-link" href="{%url 'user_registration:signup' %}">sign up</a>
-				</li>
-			
-				<li class="nav-item">
-					<a class="nav-link" href="{% url 'uploaddownload:uploadfiles' %}">UploadFood<span class="sr-only">(current)</span></a>	
-				</li>
-				<li class="nav-item">
-					<a class="nav-link" href="{% url 'uploaddownload:list_food' %}">Foodlists</a>
-				</li>
+				{% if user.is_authenticated %}
+					<li class="nav-item active">
+						<a class="nav-link" href="{%url 'user_registration:aboutUs' %}">About Us <span class="sr-only">(current)</span></a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="{% url 'uploaddownload:uploadfiles' %}">UploadFood<span class="sr-only">(current)</span></a>	
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="{% url 'uploaddownload:list_food' %}">Foodlists</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="{%url 'user_registration:user_profile' %}">Profile</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="{%url 'user_registration:logout' %}">logout</a>
+					</li>
+				{% else %}
+					<li class="nav-item">
+						<a class="nav-link" href="{%url 'user_registration:login' %}">login</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="{%url 'user_registration:signup' %}">sign up</a>
+					</li>
+				{% endif %}
 			</ul>
-			<form class="form-inline my-2 my-lg-0">
-				<input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-				<button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-			</form>
 		</div>
 	</nav>
 	{% block content %}
+	
 
 	{% endblock %}
 

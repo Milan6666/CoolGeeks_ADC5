@@ -30,6 +30,11 @@ def list_food(request):
 	alu = get_data_queryset(str(query))
 	return render(request, "uploaddownload/y.html", {"food":alu})
 
+def list_food_pagination(request, SIZE, PAGENO):
+    skip = SIZE * (PAGENO - 1)
+    alu = food.objects.all()[skip: (PAGENO * SIZE)]
+    return render(request, 'uploaddownload/y.html', {'food': alu })
+
 
 def get_data_queryset(query=None):
 	queryset=[]

@@ -1,9 +1,173 @@
 {% extends 'uploaddownload/index.html' %}
 {% block content %}
-<form method="POST" enctype="multipart/form-data">
-    {% csrf_token %}
-    {{form}}
+<!DOCTYPE html>
+<html>
 
-    <button type="submit" class="btn btn-primary">Submit</button>
+<body>
+
+
+<form method="POST" enctype="multipart/form-data">
+	<form class="main" id="form" novalidate="novalidate">
+    {% csrf_token %}
+
+     
+      <div id="forminner">
+        <div class="row">
+          <div class="col s12">
+            <h5 class="center-align teal-text">Upload Files to Food Empire</h5>
+          </div>
+        </div>
+
+
+        
+
+      {{form}}
+
+
+        <div class="row" style="margin-bottom:0!important;">
+          <div class="input-field col s6 offset-s4">
+            <button class="waves-effect yellow btn submit-btn" type="submit" >Submit</button>
+          </div>
+        </div>
+
+   
 </form>
+<style type="text/css">
+	
+
+      body {
+        background: rgba(0,0,0,.1);
+        height: auto;
+      }
+
+
+    input[type="file"] {
+      position: relative;
+      width: 100%;
+      height: 150px;
+      background: rgba(0,0,0,.03);
+      border: 2px dashed grey !important;
+      outline: none;
+      font-size: 0px;
+      cursor: pointer;
+      overflow: hidden;
+      margin: 0px;
+      padding: 0px;
+    }
+    input[type="file"]:hover {
+      background: #dadae3;
+    }
+    input[type="file"][data-text-enabled="1"]:before {
+      content: attr(data-text)!important;
+    }
+    input[type="file"][multiple]:before {
+      content: "Drag and drop files here";
+    }
+    input[type="file"]:before {
+      content: "Drag and drop files here";
+      display: block;
+      font-size: 20px;
+      color: #999;
+      width: 100%;
+      height: 100%;
+      text-align: center;
+      vertical-align: middle;
+      margin-top: 50px;
+    }
+    input[type="file"]:active {
+      background: #004184;
+    }
+
+</style>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.5/js/materialize.min.js"></script>
+    <script src="https://gumroad.com/js/gumroad.js"></script>
+    <script src="https://www.google.com/recaptcha/api.js"></script>
+
+
+    <script>
+      var file,
+          reader = new FileReader();
+
+      reader.onloadend = function(e) {
+        if (e.target.error != null) {
+          showError("File " + file.name + " could not be read.");
+          return;
+        } else {
+          google.script.run
+            .withSuccessHandler(showSuccess)
+            .uploadFileToGoogleDrive(e.target.result, file.name, $('input#name').val(), $('input#email').val());
+        }
+      };
+
+      function showSuccess(e) {
+        if (e === "OK") {
+          $('#forminner').hide();
+          $('#success').show();
+        } else {
+          showError(e);
+        }
+      }
+
+      function submitForm() {
+
+        var files = $('#files')[0].files;
+
+        if (files.length === 0) {
+          showError("Please select a file to upload");
+          return;
+        }
+
+        file = files[0];
+
+        showMessage("");
+
+        reader.readAsDataURL(file);
+
+      }
+
+      function showError(e) {
+        $('#progress').addClass('red-text').html(e);
+      }
+
+      function showMessage(e) {
+        $('#progress').removeClass('red-text').html(e);
+      }
+
+      function allowDrop(ev) {
+          ev.preventDefault();
+      }
+
+      function drag(ev) {
+          ev.dataTransfer.setData("text", ev.target.id);
+      }
+
+     function drop(ev) {
+          ev.preventDefault();
+          var data = ev.dataTransfer.getData("text");
+          ev.target.appendChild(document.getElementById(data));
+      }
+
+      document.addEventListener("change", function(t) {
+	e = t.target;
+	if (e.tagName == "INPUT" && e.type.toLowerCase() == "file") {
+		if (e.files.length > 0) {
+			if (e.files.length == 1) {
+				e.setAttribute('data-text-enabled', 1);
+				e.setAttribute('data-text', '1 File selected: "'+e.files[0].name+'"');
+			} else {
+				e.setAttribute('data-text-enabled', 1);
+				e.setAttribute('data-text', e.files.length + ' File' + (e.files.length > 1 ? 'S' : '') + ' selected');
+			}
+		} else {
+			e.setAttribute('data-text-enabled', 0);
+		}
+	}
+});
+</script>
+
+
+</body>
+</html>
 {% endblock %}

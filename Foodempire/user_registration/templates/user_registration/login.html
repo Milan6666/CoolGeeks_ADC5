@@ -20,12 +20,19 @@
 
     </style>
 
+     {% if messages %}
+          <ul class="messages">
+              {% for message in messages %}
+                <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+              {% endfor %}
+           </ul>
+    {% endif %}
 
     <h1>Food Empire</h1>
     <form class="" action="/login/" method="post" autocomplete="off">
     {% csrf_token %}
     <label>User</label>
-    <input type="email" name="username">
+    <input type="text" name="username">
     <br>
     <label>Password</label>
     <input type="password" name="password"><br>
