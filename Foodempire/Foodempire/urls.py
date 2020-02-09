@@ -25,6 +25,7 @@ urlpatterns = [
 	path('',include('user_registration.urls')),
     path('admin/', admin.site.urls),
     path('', include('uploaddownload.urls')),
+    path('', include('restapi.urls')),
 ]
 
 urlpatterns += static(settings.MEDIA_URL, document_root = settings.MEDIA_ROOT)
