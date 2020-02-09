@@ -1,7 +1,7 @@
-{% extends "uploaddownload/index.html" %}
+{% extends 'uploaddownload/index.html' %}
 {% block content %}
 
-<form class = "search-bar" method = "get">
+<form class = "search-bar" method = "get">Search Food :
 <input type ="text" name ="q" placeholder="Search.." value="{{query}}">
 </form>
 
@@ -13,7 +13,8 @@
 		<th>Title</th>
 		<th>Name</th>
 		<th>Download</th>
-		<th>Delete</th>
+
+		<th>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;Delete</th>
 	</tr>
 </thead>
 
@@ -25,18 +26,22 @@
 		<td>{{food.file}}</td>
 		<!-- <td><a href="{{food.pdf.url}}">Download PDF</a></td> -->
 		<td>
-			<a href={{food.food.url}} class="btn btn-primary btn-sm" target="_blank">Download File</a>
+			<a href="{{food.file.url}}" download>Download File</a>
 		</td>
 		<td>
 			<form method="POST", action="{% url 'uploaddownload:delete_data' food.pk %}">
 				{% csrf_token %}
-				<button type="submit" class="btn btn-primary btn-sm"> Delete</button>
+				<button type="submit" class="btn btn-primary btn-sm">Delete</button>
 			</form>
 		</td>
 	</tr>
 	{% endfor %}
 </tbody>
 </table>
+
+<a href="/list_food/pagination/5/1">1</a>
+<a href="/list_food/pagination/5/2">2</a>
+<a href="/list_food/pagination/5/3">3</a>
 
 
 {% endblock %}

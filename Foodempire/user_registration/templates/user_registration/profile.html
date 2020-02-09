@@ -1,0 +1,43 @@
+{% extends 'user_registration/index.html' %}
+{% block content %}           
+                        <ul class="list-group">
+                            <li class="list-group-item">
+                                Email:
+                                <strong class="pull-right">{{ user.email }}</strong>
+                            </li>
+                            <li class="list-group-item">
+                                Username:
+                                <strong class="pull-right">{{ user.username }}</strong>
+                            </li>
+                            <li class="list-group-item">
+                                Join Date:
+                                <strong class="pull-right">{{ user.date_joined|date:"F j, Y" }}</strong>
+                            </li>
+                        </ul>
+                            <br>
+
+                        {% if messages %}
+                            <ul class="messages">
+                                {% for message in messages %}
+                                <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+                                {% endfor %}
+                            </ul>
+                        {% endif %}
+
+
+    <form method="post" action="done">
+        {% csrf_token %}
+        <ul>
+            <li>Username:</li>
+            <input type="text" name="username" placeholder="{{ user.username }}" required="True">
+            <li>First Name</li>
+            <input type="text" name="first_name" placeholder="{{ user.first_name }}" required="True">
+            <li>Last Name</li>
+            <input type="text" name="last_name" placeholder="{{ user.last_name }}" required="True">
+            <li>Email</li>
+            <input type="text" name="email" placeholder="{{ user.email }}" required="True">
+
+            <input type="submit" name="update" value="Update">
+        </ul>
+    </form>
+{% endblock %}

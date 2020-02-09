@@ -1,0 +1,46 @@
+{% extends 'user_registration/index.html' %}
+
+{% block content %}
+
+ 
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body>
+    {{ se }}
+
+    <style> 
+    body, html {
+    height: 100%;
+    font-family: Poppins-Regular,sans-serif;
+  }
+
+    </style>
+
+     {% if messages %}
+          <ul class="messages">
+              {% for message in messages %}
+                <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+              {% endfor %}
+           </ul>
+    {% endif %}
+
+    <h1>Food Empire</h1>
+    <form class="" action="/login/" method="post" autocomplete="off">
+    {% csrf_token %}
+    <label>User</label>
+    <input type="text" name="username">
+    <br>
+    <label>Password</label>
+    <input type="password" name="password"><br>
+    <input type="submit" value="login">
+
+    <!-- {{ apple.name }} -->
+  </form>
+  {{ error }}
+  </body>
+</html>
+ {% endblock %}
