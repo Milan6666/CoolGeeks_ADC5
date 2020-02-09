@@ -31,11 +31,11 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
-<<<<<<< HEAD
+
     'user_registration',
-=======
+
     'uploaddownload.apps.UploaddownloadConfig',
->>>>>>> master
+
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',

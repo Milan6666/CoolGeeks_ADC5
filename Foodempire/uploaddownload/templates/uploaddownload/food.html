@@ -1,9 +1,0 @@
-{% extends 'uploaddownload/index.html' %}
-{% block content %}
-<form method="POST" enctype="multipart/form-data">
-    {% csrf_token %}
-    {{form}}
-
-    <button type="submit" class="btn btn-primary">Submit</button>
-</form>
-{% endblock %}
