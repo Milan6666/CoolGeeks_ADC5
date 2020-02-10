@@ -52,4 +52,11 @@ def api_delete_data(request, pk=None):
     
     else:
         return JsonResponse({"title" : foods.title, "name" : foods.name})
-    
+    #pagenation for restapi
+@csrf_exempt
+def list_food_pagination(request,PAGENO):
+    SIZE=5#size of food list
+    skip = SIZE * (PAGENO - 1)
+    foods = food.objects.all()[skip: (PAGENO * SIZE)]
+    dict_value = {"foods": list(foods.values("title","name"))}
+    return JsonResponse(dict_value)

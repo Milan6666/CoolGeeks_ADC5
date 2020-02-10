@@ -1,21 +1,61 @@
 {% extends 'user_registration/index.html' %}
-{% block content %}           
+{% block content %} 
+
+    <style type="text/css">
+        .list{
+            background: #00CCFF;
+            padding: 20px;
+        }
+        
+        div.fontface {
+           font-family: myFirstFont;
+           src: url(sansation_light.woff);
+           font-size: 20px;
+        }
+        .container {
+          border-radius: 5px;
+          background-color: #f2f2f2;
+          padding: 20px;
+        }
+
+        label {
+          padding: 12px 12px 12px 0;
+          display: inline-block;
+        }
+        
+         .row:after {
+            content: "";
+            display: table;
+            clear: both;
+        }
+        .col-25 {
+           padding: 
+          float: left;
+          width: 25%;
+          margin-top: 6px;
+        }
+
+
+    </style>   
+                <div class=fontface>
+                    <div class="list">       
                         <ul class="list-group">
-                            <li class="list-group-item">
+                            <li class="list-group-item" style="color:red;">
                                 Email:
                                 <strong class="pull-right">{{ user.email }}</strong>
                             </li>
-                            <li class="list-group-item">
+                            <li class="list-group-item" style="color:black;">
                                 Username:
                                 <strong class="pull-right">{{ user.username }}</strong>
                             </li>
-                            <li class="list-group-item">
+                            <li class="list-group-item" style="color:blue;">
                                 Join Date:
                                 <strong class="pull-right">{{ user.date_joined|date:"F j, Y" }}</strong>
                             </li>
                         </ul>
                             <br>
-
+                    </div>
+                </div>
                         {% if messages %}
                             <ul class="messages">
                                 {% for message in messages %}
@@ -24,20 +64,31 @@
                             </ul>
                         {% endif %}
 
-
+  <div class="container">
     <form method="post" action="done">
         {% csrf_token %}
-        <ul>
-            <li>Username:</li>
-            <input type="text" name="username" placeholder="{{ user.username }}" required="True">
-            <li>First Name</li>
-            <input type="text" name="first_name" placeholder="{{ user.first_name }}" required="True">
-            <li>Last Name</li>
-            <input type="text" name="last_name" placeholder="{{ user.last_name }}" required="True">
-            <li>Email</li>
-            <input type="text" name="email" placeholder="{{ user.email }}" required="True">
+        <div class="row"> 
+            <div class="col-25">
+                     <ul>
+                        <li>Username:</li>
+                        <input type="text" name="username" placeholder="{{ user.username }}" required="True">
+                        <br>
 
-            <input type="submit" name="update" value="Update">
-        </ul>
+                        <li>First Name</li>
+                        <input type="text" name="first_name" placeholder="{{ user.first_name }}" required="True">
+                        <br>
+
+                        <li>Last Name</li>
+                        <input type="text" name="last_name" placeholder="{{ user.last_name }}" required="True">
+                        <br>
+
+                        <li>Email</li>
+                        <input type="text" name="email" placeholder="{{ user.email }}" required="True">
+
+                        <input type="submit" name="update" value="Update">
+                    </ul>
+            </div>
+        </div>    
     </form>
+  </div>
 {% endblock %}

@@ -6,9 +6,26 @@
 <html lang="en" dir="ltr">
   <head>
     <meta charset="utf-8">
+    <style>
+body {
+  background-color: black;
+
+}
+.form-group{
+    text-align: left;
+    margin-left: 50px;
+  
+ 
+}
+.table{
+     border: 1px solid black;
+  
+  
+}
+</style>
     <title></title>
   </head>
-  <body>
+  <body style="color:white">
                         {% if messages %}
                             <ul class="messages">
                                 {% for message in messages %}
@@ -20,58 +37,58 @@
     <form class="" action="/signup/" method="post" autocomplete="off">
       
                 {% csrf_token %}
-                <div class="row pad">
-                    <div class="col-lg-6">
+                
+                    <div class="table">
+
                         <div class="form-group">
-                            <label for="username">Username</label>
+                            <h1>Food Empire</h1>
+                            <label for="username"><b>User Name</b></label><br>
                             <input type="text" name="username" placeholder="Username" required="TRUE">
                         </div>
                         <div class="form-group">
-                            <label for="email">Email Address</label>
+                            <label for="email"><b>Email Address</b></label><br>
                             <input type="text" name="email" placeholder="Email address" required="TRUE">
                         </div>
-                    <div class="col-lg-6">
                         <div class="form-group">
-                            <label for="first_name">First Name</label>
+                            <label for="first_name"><b>First Name</b></label><br>
                             <input type="text" name="first_name" placeholder="First Name" required="TRUE">
                         </div>
                         <div class="form-group">
-                            <label for="last_name">Last Name</label>
+                            <label for="last_name"><b>Last Name</b></label><br>
                             <input type="text" name="last_name" placeholder="Last Name" required="TRUE">
                         </div>
-                    </div>
-
-                    <div class="col-lg-6">
+                   
                         <div class="form-group">
-                            <label for="password1">Password</label>
+                            <label for="password1"><b>Password</b></label><br>
                             <input type="password" name="password1" placeholder="Password1" required="TRUE">
                         </div>
                         <div class="form-group">
-                            <label for="password2">Confirm Password</label>
+                            <label for="password2"><b>Confirm Password </b></label><br>
                             <input type="password" name="password2" placeholder="Confirm Password" required="TRUE">
                         </div>
-                    </div>
+                    
 
                   <!--<div style="color: red;">{{ form.errors }}</div>-->
-                </div>
+                
 
-                <div class="row pad">
-                    <div class="col-lg-6">
+                
+                    
                         <div class="form-group">
                             <button type="submit" class="btn btn-primary">
                                 <i class="glyphicon glyphicon-plus-sign"></i><strong>SignUp</strong>
                             </button>
                             <a href="{% url 'user_registration:login' %}" class="btn btn-link pull-right">
-                                Go to Login
+                                <u>Go to Login</u>
                                 <i class="glyphicon glyphicon-arrow-right"></i>
                             </a>
                         </div>
+                       
                     </div>
-                </div>
+               
             </form>
+
+
   </body>
 </html>
 
  {% endblock %}
-
-

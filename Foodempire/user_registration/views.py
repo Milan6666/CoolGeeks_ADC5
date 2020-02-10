@@ -4,10 +4,11 @@ from django.contrib.auth.models import User, auth
 from django.contrib import messages
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 
-
+#home function
 def home(request):
     return render(request,'user_registration/home.html')
     #validate the form and Registration the user
+#sign function or register for new user 
 def signup(request):
     if request.method=="POST":
         username=request.POST['username']
@@ -33,6 +34,7 @@ def signup(request):
     else:
         return render(request, 'user_registration/signup.html')
 
+# for login function
 def login(request):
     if request.method=="POST":
         username=request.POST['username']
@@ -47,6 +49,7 @@ def login(request):
     else:
         return render(request, 'user_registration/login.html')
 
+#for logout function
 def logout(request):
     auth.logout(request)
     return redirect('user_registration:home')
@@ -57,7 +60,7 @@ def aboutUs(request):
 
 
 HOME_PER_PAGE = 3
-
+#pagination for home
 def homePage(request):
     home = home.objects.all()
     query = ""
@@ -80,7 +83,7 @@ def homePage(request):
 
     return render(request, "user_registration/home.html", {"user_registration" : home, "query" : query})
 
-
+#search function
 def search(query=None):
     queryset = []
     queries = query.split(" ")
@@ -100,6 +103,7 @@ def user_profile(request):
     user=User.objects.get(pk=user_id.id)
     return render(request, 'user_registration/profile.html', {'user':user})
 
+#for updating a profile
 def update(request):
     user_info=request.user
     user=User.objects.get(pk=user_info.id)
@@ -127,16 +131,9 @@ def update_completed(request):
         return render(request, 'user_registration/profile.html')
 
 
-#pagination
-def pagination(request, PAGENO, SIZE):
-    skip= SIZE * (PAGENO -1)
-    home = home.objects.all() [skip:(PAGENO * SIZE)]
-    dict = {
-    "home":list(home.values("title", "detail"))
-    }
-    return JsonResponse(dict)
 
 
+#pegination
 def homePage(request,SIZE,PAGENO):
     skip = SIZE * (PAGENO - 1)
     post = Posts.objects.all().order_by('-post_date')[skip: (PAGENO * SIZE)]

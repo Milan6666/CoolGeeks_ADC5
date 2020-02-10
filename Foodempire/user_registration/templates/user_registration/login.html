@@ -8,18 +8,34 @@
   <head>
     <meta charset="utf-8">
     <title></title>
-  </head>
-  <body>
-    {{ se }}
-
-    <style> 
+     <style> 
     body, html {
+  background-color: black;
     height: 100%;
     font-family: Poppins-Regular,sans-serif;
   }
+  h1{margin-top: 10%;
+    margin-left: 50px;
+
+  }
+  .login{
+      padding-top: 20px;
+      margin-left: 50px;
+
+ }
+  .form-group{
+    padding-top: 10px;
+
+    }
+  
 
     </style>
 
+  </head>
+  <body style="color: white">
+    {{ se }}
+
+   
      {% if messages %}
           <ul class="messages">
               {% for message in messages %}
@@ -27,19 +43,23 @@
               {% endfor %}
            </ul>
     {% endif %}
-
-    <h1>Food Empire</h1>
-    <form class="" action="/login/" method="post" autocomplete="off">
-    {% csrf_token %}
-    <label>User</label>
-    <input type="text" name="username">
-    <br>
-    <label>Password</label>
-    <input type="password" name="password"><br>
-    <input type="submit" value="login">
-
-    <!-- {{ apple.name }} -->
-  </form>
+         <h1 >Food Empire</h1>
+        <div class="login">
+         
+          <form class="" action="/login/" method="post" autocomplete="off">
+          {% csrf_token %}
+          <label><b>User</b></label><br>
+          <input type="text" name="username">
+          <br>
+          <label><b>Password</b></label><br>
+          <input type="password" name="password"><br>
+          <div class="form-group">
+                            <button type="submit" class="btn btn-primary">
+                                <i class="glyphicon glyphicon-plus-sign"></i><strong>login</strong>
+                            </button>
+          
+          </div>
+        </form>
   {{ error }}
   </body>
 </html>
