@@ -8,18 +8,35 @@
   <head>
     <meta charset="utf-8">
     <title></title>
+     <style> 
+    body, html {
+  background-color: lightblue;
+    height: 100%;
+    font-family: Poppins-Regular,sans-serif;
+  }
+  h1{text-align: center;}
+  .login{
+
+      text-align: center;
+      background-color: white;
+      border-style: solid;
+      margin-left: 500px;
+  margin-right: 500px;
+  border-width: 5px;
+    padding-top: 50px;
+  padding-right: 1px;
+  padding-bottom: 50px;
+  padding-left: 1px;
+ }
+  
+
+    </style>
+
   </head>
   <body>
     {{ se }}
 
-    <style> 
-    body, html {
-    height: 100%;
-    font-family: Poppins-Regular,sans-serif;
-  }
-
-    </style>
-
+   
      {% if messages %}
           <ul class="messages">
               {% for message in messages %}
@@ -27,19 +44,21 @@
               {% endfor %}
            </ul>
     {% endif %}
-
-    <h1>Food Empire</h1>
-    <form class="" action="/login/" method="post" autocomplete="off">
-    {% csrf_token %}
-    <label>User</label>
-    <input type="text" name="username">
-    <br>
-    <label>Password</label>
-    <input type="password" name="password"><br>
-    <input type="submit" value="login">
-
-    <!-- {{ apple.name }} -->
-  </form>
+         <h1 >Food Empire</h1>
+        <div class="login">
+         
+          <form class="" action="/login/" method="post" autocomplete="off">
+          {% csrf_token %}
+          <label><b>User</b></label><br>
+          <input type="text" name="username">
+          <br>
+          <label><b>Password</b></label><br>
+          <input type="password" name="password"><br>
+          
+          <input type="submit" value="login">
+          </div>
+          <!-- {{ apple.name }} -->
+        </form>
   {{ error }}
   </body>
 </html>
